@@ -1,11 +1,8 @@
 import models from '../models/index.js'; // Importa os modelos inicializados
 
-// Helper para tratar erros assíncronos (similar ao asyncHandler nas referências)
 const asyncHandler = fn => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
 };
-
-// --- CRUD para Pessoa ---
 
 // CREATE
 export const criarPessoa = asyncHandler(async (req, res) => {
