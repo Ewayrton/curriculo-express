@@ -33,7 +33,17 @@ export const listarEducacoesPorPessoa = asyncHandler(async (req, res) => {
         where: { pessoaId: pessoaId }
     });
     res.status(200).json(educacoes);
-}); 
+});
+
+// GET BY ID - Listar educação por ID
+export const listarEducacaoPorId = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const educacao = await models.Educacao.findByPk(id);
+    if (!educacao) {
+        return res.status(404).json({ error: 'Educação não encontrada.' });
+    }
+    res.status(200).json(educacao);
+});
 
 //PUT
 export const atualizarEducacao = asyncHandler(async (req, res) => {

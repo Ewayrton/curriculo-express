@@ -34,6 +34,16 @@ export const listarHabilidadesPorPessoa = asyncHandler(async (req, res) => {
     res.status(200).json(habilidades);
 });
 
+// GET BY ID - Listar habilidade por ID
+export const listarHabilidadePorId = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const habilidade = await models.Habilidade.findByPk(id);
+    if (!habilidade) {
+        return res.status(404).json({ error: 'Habilidade não encontrada.' });
+    }
+    res.status(200).json(habilidade);
+});
+
 // PUT
 export const atualizarHabilidade = asyncHandler(async (req, res) => {
     const { id } = req.params;

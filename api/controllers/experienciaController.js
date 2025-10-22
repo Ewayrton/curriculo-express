@@ -36,6 +36,16 @@ export const listarExperienciasPorPessoa = asyncHandler(async (req, res) => {
     res.status(200).json(experiencias);
 });
 
+// GET BY ID - Listar experiência por ID
+export const listarExperienciaPorId = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const experiencia = await models.Experiencia.findByPk(id);
+    if (!experiencia) {
+        return res.status(404).json({ error: 'Experiência não encontrada.' });
+    }
+    res.status(200).json(experiencia);
+});
+
 //PUT
 export const atualizarExperiencia = asyncHandler(async (req, res) => {
     const { id } = req.params;
