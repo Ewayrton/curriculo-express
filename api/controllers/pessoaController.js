@@ -6,8 +6,19 @@ const asyncHandler = fn => (req, res, next) => {
 
 // CREATE
 export const criarPessoa = asyncHandler(async (req, res) => {
-    const novaPessoa = await models.Pessoa.create(req.body); // Cria usando os dados do corpo da requisição
-    res.status(201).json(novaPessoa);
+    try {
+        const novaPessoa = await models.Pessoa.create(req.body);
+        res.status(201).json(novaPessoa);
+    } catch (error) {
+        console.error("ERRO DETALHADO AO CRIAR PESSOA:", error); // Log essencial
+        // Envia resposta de erro para o cliente
+        res.status(400).json({
+            error: 'Erro ao criar pessoa.',
+            details: error.message, // Mensagem principal
+            name: error.name,        // Tipo do erro (ex: SequelizeUniqueConstraintError)
+            fields: error.fields     // (Opcional) Campos que falharam na validação
+         });
+    }
 });
 
 // GET ALL
