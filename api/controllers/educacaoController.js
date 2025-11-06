@@ -26,6 +26,12 @@ export const criarEducacao = asyncHandler(async (req, res) => {
     res.status(201).json(novaEducacao);
 });
 
+// GET ALL - Listar todas as educações
+export const listarTodasEducacoes = asyncHandler(async (req, res) => {
+    const educacoes = await models.Educacao.findAll(); // Busca tudo, sem filtro
+    res.status(200).json(educacoes);
+});
+
 // GET ALL by Pessoa ID - Listar educações de uma pessoa específica
 export const listarEducacoesPorPessoa = asyncHandler(async (req, res) => {
     const { pessoaId } = req.params;
