@@ -27,6 +27,12 @@ export const criarExperiencia = asyncHandler(async (req, res) => {
     res.status(201).json(novaExperiencia);
 });
 
+// GET ALL - Listar todas as experiências
+export const listarTodasExperiencias = asyncHandler(async (req, res) => {
+    const experiencias = await models.Experiencia.findAll(); // Busca tudo, sem filtro
+    res.status(200).json(experiencias);
+});
+
 // GET ALL by Pessoa ID - Listar experiências de uma pessoa específica
 export const listarExperienciasPorPessoa = asyncHandler(async (req, res) => {
     const { pessoaId } = req.params;

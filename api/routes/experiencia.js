@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   criarExperiencia,
+  listarTodasExperiencias,
   listarExperienciasPorPessoa,
   listarExperienciaPorId,
   atualizarExperiencia,
@@ -10,6 +11,7 @@ import {
 const router = Router();
 
 router.post('/', criarExperiencia);
+router.get('/', listarTodasExperiencias);
 router.get('/pessoa/:pessoaId', listarExperienciasPorPessoa);
 router.get('/:id', listarExperienciaPorId);
 router.put('/:id', atualizarExperiencia);
