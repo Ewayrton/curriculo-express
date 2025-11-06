@@ -25,6 +25,12 @@ export const criarHabilidade = asyncHandler(async (req, res) => {
     res.status(201).json(novaHabilidade);
 });
 
+//GET ALL - Listar todas as habilidades
+export const listarHabilidades = asyncHandler(async (req, res) => {
+    const habilidades = await models.Habilidade.findAll();
+    res.status(200).json(habilidades);
+});
+
 // GET ALL by Pessoa ID - Listar habilidades de uma pessoa específica
 export const listarHabilidadesPorPessoa = asyncHandler(async (req, res) => {
     const { pessoaId } = req.params;

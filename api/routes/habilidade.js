@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   criarHabilidade,
+  listarHabilidades,
   listarHabilidadesPorPessoa,
   listarHabilidadePorId,
   atualizarHabilidade,
@@ -10,6 +11,7 @@ import {
 const router = Router();
 
 router.post('/', criarHabilidade);
+router.get('/', listarHabilidades);
 router.get('/pessoa/:pessoaId', listarHabilidadesPorPessoa);
 router.get('/:id', listarHabilidadePorId);
 router.put('/:id', atualizarHabilidade);
